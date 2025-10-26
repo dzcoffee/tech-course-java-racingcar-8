@@ -1,19 +1,25 @@
 package racingcar.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import racingcar.model.Race;
+import racingcar.model.Track;
+import racingcar.model.Winner;
 import racingcar.view.RacingView;
 
 public class RacingController {
-    private RacingView racingView;
-    private Race race;
-    private CarController carController;
+    private final RacingView racingView;
+    private final CarController carController;
+    private final TrackController trackController;
     private static Integer TRACK_COUNT;
+    private final Track track;
+    private final Winner winner;
 
-    public RacingController(Race race, RacingView racingView, CarController carController) {
-        this.race = race;
+    public RacingController(Track track, RacingView racingView, CarController carController, TrackController trackController) {
         this.racingView = racingView;
+        this.trackController = trackController;
         this.carController = carController;
+        this.track = track;
+        this.winner = new Winner(track);
+
     }
 
     public void start() {
@@ -21,6 +27,9 @@ public class RacingController {
         carController.inputCar();
         racingView.printBeforeInputCount();
         TRACK_COUNT = createCount();
+
+        trackController.run(TRACK_COUNT);
+        winner.findWinner();
     }
 
     private Integer createCount() {
@@ -32,4 +41,6 @@ public class RacingController {
             throw e;
         }
     }
+
+
 }

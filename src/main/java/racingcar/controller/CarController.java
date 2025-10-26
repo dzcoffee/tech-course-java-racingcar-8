@@ -1,14 +1,14 @@
 package racingcar.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import racingcar.model.Car;
-import racingcar.model.Track;
 
 public class CarController {
-    private final Track track;
+    private TrackController trackController;
 
-    public CarController(){
-        track = new Track();
+    public CarController(TrackController trackController) {
+        this.trackController = trackController;
     }
 
     public void inputCar(){
@@ -21,6 +21,6 @@ public class CarController {
 
     private void createCar(String carName){
         Car car = new Car(carName);
-        track.addCarToTrack(car);
+        trackController.addCar(car);
     }
 }
