@@ -7,17 +7,20 @@ import java.util.Map;
 import racingcar.view.TrackView;
 
 public class Track {
-    private final Map<Car, Integer> cars;
+    private final Map<Car, Integer> trackCountMap;
+    private final List<Car> carList;
     private static Integer MAX_COUNT = 0;
     private final TrackView trackView;
 
     public Track(){
-        cars = new HashMap<>();
+        trackCountMap = new HashMap<>();
         trackView = new TrackView();
+        carList = new ArrayList<>();
     }
 
     public void addCarToTrack(Car car){
-        cars.put(car, 0);
+        trackCountMap.put(car, 0);
+        carList.add(car);
     }
 
     public void printAfterAllCount(){
@@ -25,22 +28,23 @@ public class Track {
     }
 
     public void moveCarInTrack(){
-        for(Map.Entry<Car, Integer> car : cars.entrySet()){
-            randCarInTrack(car.getKey(), car.getValue());
+        for(Car car : carList){
+            if(!trackCountMap.containsKey(car)) continue;
+            randCarInTrack(car, trackCountMap.get(car));
         }
     }
 
     private void randCarInTrack(Car car, Integer position){
         position = car.randCarMove(position);
         trackView.printAfterRun(car, position);
-        cars.put(car, position);
+        trackCountMap.put(car, position);
         MAX_COUNT = Math.max(MAX_COUNT, position);
     }
 
     public List<Car> findWinCar(){
         List<Car> winCars = new ArrayList<>();
 
-        for(Map.Entry<Car, Integer> car : cars.entrySet()){
+        for(Map.Entry<Car, Integer> car : trackCountMap.entrySet()){
             if(car.getValue() == MAX_COUNT) winCars.add(car.getKey());
         }
 

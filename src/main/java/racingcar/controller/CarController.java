@@ -20,6 +20,8 @@ public class CarController {
     }
 
     private void createCar(String carName){
+        //if(carName.length() > 5) throw new IllegalArgumentException();
+
         Car car = new Car(carName);
         trackController.addCar(car);
     }
