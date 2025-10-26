@@ -13,4 +13,8 @@ public class Car {
         if(Randoms.pickNumberInRange(0, 9) >=4) return nowPosition+1;
         return nowPosition;
     }
+
+    public void printCarName(){
+        System.out.print(carName);
+    }
 }

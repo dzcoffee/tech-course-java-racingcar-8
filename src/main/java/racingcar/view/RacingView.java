@@ -10,6 +10,10 @@ public class RacingView {
         System.out.println("시도할 횟수는 몇 회인가요?");
     }
 
+    public void printBeforeRun(){
+        System.out.println("\n실행 결과");
+    }
+
     public void printWinner(){
 
     }

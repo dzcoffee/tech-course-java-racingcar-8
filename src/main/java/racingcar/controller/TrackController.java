@@ -13,6 +13,7 @@ public class TrackController {
     public void run(Integer count){
         for(int i = 0; i < count; i++){
             track.moveCarInTrack();
+            track.printAfterAllCount();
         }
     }
 

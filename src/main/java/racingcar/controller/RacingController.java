@@ -28,8 +28,10 @@ public class RacingController {
         racingView.printBeforeInputCount();
         TRACK_COUNT = createCount();
 
+        racingView.printBeforeRun();
         trackController.run(TRACK_COUNT);
         winner.findWinner();
+        winner.printWinners();
     }
 
     private Integer createCount() {
